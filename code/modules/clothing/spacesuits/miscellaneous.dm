@@ -4,7 +4,31 @@
 	desc = "That's not red paint. That's real blood."
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
+	action_button_name = "Toggle Holo Map"
 	armor = list(melee = 65, bullet = 40, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
+	var/datum/holomap_interface/deathsquad/holo = null
+	var/on = FALSE
+
+/obj/item/clothing/head/helmet/space/deathsquad/atom_init()
+	deathsquad_helmets += src
+	holo = new(src)
+	. = ..()
+
+/obj/item/clothing/head/helmet/space/deathsquad/Destroy()
+	deathsquad_helmets -= src
+	return ..()
+
+/obj/item/clothing/head/helmet/space/deathsquad/ui_action_click()
+	if(on)
+		holo.deactivate_holomap()
+	else
+		holo.activate(usr)
+	on = !on
+
+/obj/item/clothing/head/helmet/space/deathsquad/dropped(mob/M)
+	holo.deactivate_holomap()
+	on = FALSE
+	return ..()
 
 /obj/item/clothing/head/helmet/space/deathsquad/beret
 	name = "officer's beret"

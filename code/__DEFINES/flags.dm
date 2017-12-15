@@ -97,3 +97,11 @@
 #define FORDBIDDEN_VIEW      1
 #define UNIVERSAL_VIEW       2
 #define TRAITOR_VIEW         4
+//Filters for holomap
+#define HOLOMAP_CUSTOM 1
+#define HOLOMAP_DEATHSQUAD 2
+#define HOLOMAP_ERT 3
+#define HOLOMAP_NUKE 4
+#define HOLOMAP_ELITESYNDIE 5
+#define HOLOMAP_VOX 6
+
