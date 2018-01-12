@@ -452,7 +452,7 @@
 	holomap_obj.layer = HUD_LAYER
 	holomap_obj.color = ui_color
 	holomap_obj.mouse_opacity = 0
-	holomap_obj.alpha = 155
+	holomap_obj.alpha = 200
 
 	mymob.client.screen = list()
 

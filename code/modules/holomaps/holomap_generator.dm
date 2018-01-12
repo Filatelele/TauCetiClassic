@@ -1,5 +1,5 @@
-#define HOLOMAP_WALKABLE_TILE "#5294ff"
-#define HOLOMAP_CONCRETE_TILE "#bfefff"
+#define HOLOMAP_WALKABLE_TILE "#ffffff"
+#define HOLOMAP_CONCRETE_TILE "#333333"
 #define HOLOMAP_UPDATE_DELAY (2 MINUTES)
 #define HOLOMAP_DURATION_WITHOUT_USERS (15 MINUTES)
 
@@ -23,10 +23,10 @@ var/datum/holomap_updater/holomap_updater
 /datum/holomap_updater/proc/activate()
 	last_update = world.time + HOLOMAP_UPDATE_DELAY
 	holomap = image(generateHoloMap())
-	holomap.color = "#0B74B4"
+	holomap.color = "#b32428"
 	holomap.layer = HUD_LAYER
 	holomap.plane = HUD_PLANE
-	holomap.alpha = 175
+	holomap.alpha = 200
 	START_PROCESSING(SSobj, src)
 
 /datum/holomap_updater/process()
@@ -36,7 +36,7 @@ var/datum/holomap_updater/holomap_updater
 			M.hud_used.holomap_obj.overlays -= holomap
 		qdel(holomap)
 		holomap = image(generateHoloMap())
-		holomap.color = "#0B74B4"
+		holomap.color = "#b32428"
 		holomap.layer = HUD_LAYER
 		holomap.plane = HUD_PLANE
 		for(var/mob/M in users)
@@ -52,14 +52,15 @@ var/datum/holomap_updater/holomap_updater
 
 /datum/holomap_updater/proc/generateHoloMap()
 	var/icon/holomap = icon('icons/canvas.dmi', "blank")
+	holomap.Blend("#79ff79",ICON_MULTIPLY)
 	for(var/i = 1 to ((2 * world.view + 1) * 32))
 		for(var/r = 1 to ((2 * world.view + 1) * 32))
 			var/turf/tile = locate(i, r, 1)
 			if(tile)
-				if(!istype(tile, /turf/space) || istype(tile, /turf/simulated/wall) || istype(tile, /turf/unsimulated/wall) || 	(locate(/obj/structure/grille) in tile) || 	(locate(/obj/structure/window) in tile))
-					holomap.DrawBox(HOLOMAP_CONCRETE_TILE, i, r)
 				if (istype(tile, /turf/simulated/floor) || istype(tile, /turf/unsimulated/floor) || istype(tile, /turf/simulated/shuttle/floor))
 					holomap.DrawBox(HOLOMAP_WALKABLE_TILE, i, r)
+				if(istype(tile, /turf/simulated/wall) || istype(tile, /turf/unsimulated/wall) || locate(/obj/structure/grille) in tile || locate(/obj/structure/window) in tile)
+					holomap.DrawBox(HOLOMAP_CONCRETE_TILE, i, r)
 	return holomap
 
 #undef HOLOMAP_UPDATE_DELAY
