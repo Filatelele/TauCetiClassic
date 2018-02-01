@@ -10,7 +10,7 @@
 
 	var/list/watching_mobs = list()
 	var/on = FALSE
-	var/datum/holomap_interface/stationary_holomap/holo = null
+	var/datum/holomap_interface/holo = null
 
 /obj/machinery/station_holomap/atom_init()
 	holo = new (src)
