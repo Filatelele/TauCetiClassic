@@ -34,7 +34,7 @@
 		holo.deactivate_holomap()
 		to_chat(usr, "<span class='notice'>You deactivate the holomap.</span>")
 	else
-		holo.activate(usr, HOLOMAP_ERT_COLOR)
+		holo.activate(usr, "ert")
 		to_chat(usr, "<span class='notice'>You activate the holomap.</span>")
 	holo_enabled = !holo_enabled
 

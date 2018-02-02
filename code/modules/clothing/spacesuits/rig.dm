@@ -345,7 +345,7 @@
 		holo.deactivate_holomap()
 	else
 		to_chat(usr, "<span class='notice'>You activate the holomap.</span>")
-		holo.activate(usr, HOLOMAP_NUCLEAR_COLOR)
+		holo.activate(usr, "nuclear")
 	on = !on
 
 /obj/item/clothing/head/helmet/space/rig/syndi/dropped(mob/user)

@@ -25,7 +25,7 @@
 		holo.deactivate_holomap()
 		to_chat(usr, "<span class='notice'>You deactivate the holomap.</span>")
 	else
-		holo.activate(usr, HOLOMAP_DEATHSQUAD_COLOR)
+		holo.activate(usr, "deathsquad")
 		to_chat(usr, "<span class='notice'>You activate the holomap.</span>")
 	on = !on
 
